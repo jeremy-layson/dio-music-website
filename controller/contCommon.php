@@ -31,8 +31,22 @@ abstract class contCommon
     {
         $sModelName = ucfirst($sModelName);
 
-        include_once('../model/' . $sModelName . '.php');
+        include_once('../model/model' . $sModelName . '.php');
         return $sModelName::instance();
+    }
+
+    /**
+     * returns an instance of a library
+     *
+     * @param String sLibName
+     * @return Object
+     */
+    protected function lib($sLibName)
+    {
+        $sLibName = ucfirst($sLibName);
+
+        include_once('../lib/lib' . $sLibName . '.php');
+        return $sLibName::instance();
     }
 }
 ?>

@@ -7,7 +7,7 @@ class contHome extends contCommon
 {
     public function exec()
     {
-        $oModel = $this->model('modelSample');
+        $oModel = $this->model('sample');
         $oModel->test();
     }
 }
