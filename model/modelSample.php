@@ -20,7 +20,8 @@ class modelSample
     public static function instance()
     {
         if (is_object(self::$oModel) === false) {
-            self::$oModel = new self;
+
+                self::$oModel = new self;
         }
 
         return self::$oModel;

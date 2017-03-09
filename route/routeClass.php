@@ -22,7 +22,7 @@ class Router
      */
     public function exec()
     {
-        $sUrl  = $_SERVER['REDIRECT_URL'];
+        $sUrl  = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['REQUEST_URI'];
         $aParams['get'] = $_GET;
         $aParams['post'] = $_POST;
         $aParams['request'] = $_REQUEST;
@@ -53,8 +53,11 @@ class Router
         $sClass = '';
         //if the user set the link manually
         if (isset($this->aLinks[$sUrl]) === true) {
-            $sFile = '../controller/' . $this->aLinks[$sUrl];
-            return $sFile;
+            $sFile = '../controller/' . $this->aLinks[$sUrl] . '.php';
+
+            $aReturn['fileName'] = $sFile;
+            $aReturn['className'] = $this->aLinks[$sUrl];
+            return $aReturn;
         }
 
         $aUrl = explode('/', $sUrl);

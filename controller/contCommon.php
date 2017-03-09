@@ -11,14 +11,74 @@ abstract class contCommon
 {
 
     /**
+     * @var Array aJsImports
+     */
+    protected $aJsImports;
+
+    /**
+     * @var Array aCssImports
+     */
+    protected $aCssImports;
+
+    /**
+     * @var Array of Object
+     */
+    protected $aDependencies;
+    /**
      * inserts the view file
      *
      * @param String sFileName
      * @param Array aVariables
      */
-    protected function view($sFileName, $aVariables)
+    protected function view($sFileName, $aVariables = NULL)
     {
+        if (($aVariables !== NULL) && (count($aVariables) > 0)) {
+            foreach ($aVariables as $sKey => $mVal) {
+                $$sKey = $mVal;
+            }
+        }
+
+        $js_import = $this->getJs();
+        $css_import = $this->getCss();
         include_once('../view/' . $sFileName . '.php');
+    }
+
+    /**
+     * concatenates the js imports
+     *
+     * @return String
+     */
+    private function getJs()
+    {
+        if (count($this->aJsImports) === 0) {
+            return '';
+        }
+        $sReturn = '';
+
+        foreach ($this->aJsImports as $sJsImports) {
+            $sReturn = $sReturn . '<script type="text/javascript" src="/resource/js/' . $sJsImports . '"></script>';
+        }
+
+        return $sReturn;
+    }
+
+    /**
+     * concatenates the css imports
+     *
+     * @return String
+     */
+    private function getCss()
+    {
+        if (count($this->aCssImports) === 0) {
+            return '';
+        }
+        $sReturn = '';
+
+        foreach ($this->aCssImports as $cssImports) {
+            $sReturn = $sReturn . '<link rel="stylesheet" href="/resource/css/' . $cssImports . '">';
+        }
+
+        return $sReturn;
     }
 
     /**
@@ -32,7 +92,9 @@ abstract class contCommon
         $sModelName = ucfirst($sModelName);
 
         include_once('../model/model' . $sModelName . '.php');
-        return $sModelName::instance();
+
+        $sClassName = 'model' . $sModelName;
+        return $sClassName::instance();
     }
 
     /**
@@ -46,7 +108,40 @@ abstract class contCommon
         $sLibName = ucfirst($sLibName);
 
         include_once('../lib/lib' . $sLibName . '.php');
-        return $sLibName::instance();
+
+        $sClassName = 'lib' . $sModelName;
+        return $sClassName::instance();
+    }
+
+    /**
+     * setter for the js imports
+     *
+     * @param String sFileName
+     */
+    protected function js($sFileName)
+    {
+        $this->aJsImports[] = $sFileName;
+    }
+
+    /**
+     * setter for the js imports
+     *
+     * @param String sFileName
+     */
+    protected function css($sFileName)
+    {
+        $this->aCssImports[] = $sFileName;
+    }
+
+    /**
+     * adds a dependency to $this
+     *
+     * @param Object oObject
+     * @param String sName
+     */
+    protected function dependencyInject($oObject, $sName)
+    {
+        $this->$aDependencies[$sName] = $oObject;
     }
 }
 ?>

@@ -1,7 +1,12 @@
 <?php
 
 /**
- * 
+ * common class for model
+ * @abstract
+ *
+ * @author Jeremy Layson <jeremy.b.layson@gmail.com>
+ * @since 03. 07. 2017
+ * @version 1.0
  */
 abstract class modelCommon
 {
