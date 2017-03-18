@@ -26,6 +26,7 @@ class Router
         $aParams['get'] = $_GET;
         $aParams['post'] = $_POST;
         $aParams['request'] = $_REQUEST;
+        $aParams['files'] = $_FILES;
 
         $aReturn['params'] = $aParams;
         $aReturn['controller'] = $this->getFile($sUrl);

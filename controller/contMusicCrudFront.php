@@ -1,13 +1,15 @@
 <?php
 
 /**
- * homepage class
+ * Music front controller
  *
+ * @package music
+ * @subpackage CRUD front
  * @author Jeremy Layson <jeremy.b.layson@gmail.com>
- * @since 03. 08. 2017
+ * @since 03. 16. 2017
  * @version 1.0
  */
-class contHome extends contCommon
+class contMusicCrudFront extends contCommon
 {
     public function exec($aParams)
     {
@@ -15,11 +17,11 @@ class contHome extends contCommon
         $this->js('vendor/foundation.min.js');
         $this->js('app.js');
 
-        $this->css('/home/home.css');
+        $this->css('/music/crudFront.css');
         $this->css('navbar.css');
         $this->css('foundation.min.css');
 
-        $this->view('home');
+        $this->view('music/crud');
     }
 }
 

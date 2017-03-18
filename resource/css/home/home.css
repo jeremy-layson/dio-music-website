@@ -1,0 +1,121 @@
+.content {
+    background-image: url('/resource/img/bg_pattern.png');
+}
+
+.content .ads-container {
+    padding: 5px 20% 5px 20%;
+}
+
+.content .ads {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.content .ads img {
+    width: 100%;
+    display: block;
+}
+
+.content .ads .sign {
+    cursor: default;
+    padding: 2px 10px 2px 10px;
+    float: left;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #324158;
+    position: absolute;
+    font-size: 0.7em;
+}
+
+.content-nav {
+    padding: 5px 20% 5px 20%;
+}
+
+.content-nav .logo {
+    display: inline-block;
+    height: 3em;
+}
+
+.content-nav .logo img {
+    height: 100%;
+}
+
+.content-nav .sections {
+    float:right;
+}
+
+.content-nav .sections a {
+    text-decoration: none;
+    color: #6b6c6f;
+    margin-left: 20px;
+    font-size: 1.5em;
+}
+
+.content-nav .sections a:hover {
+    border-bottom: 2px solid #d02723;
+}
+
+.hot-container {
+    background-color: #324158;
+}
+
+.hot-container .hot-list {
+    height: 300px;
+    padding: 5px 20% 5px 20%;
+}
+
+.hot-container .hot-list .hot-items {
+    display: inline-block;
+    height: 290px;
+    width: 100%;
+    overflow: scroll;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.hot-container .hot-list .hot-item {
+    float:left;
+}
+
+.hot-container .hot-list img {
+    height: 290px;
+    border: 1px solid white;
+}
+
+.genre-container {
+    padding: 15px 20% 5px 20%;
+}
+
+.genre {
+    display:inline-block;
+    box-shadow: 0px 0px 2px rgba(0,0,0,0.8);
+    border-radius: 5px;
+    background-color: white;
+    padding: 3px;
+}
+
+.genre .genre-title {
+    font-size: 2em;
+}
+
+.genre .genre-items .genre-item {
+}
+
+.genre .genre-items .genre-item .genre-box {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.genre .genre-items .genre-item .item-last {
+    margin-right: 0px;
+}
+
+.genre .genre-items .genre-item .item-photo img {
+    border-radius: 10px;
+    box-shadow: 1px -1px 2px rgba(0,0,0,0.8);
+}
+
+.genre-item .item-info {
+    padding: 3px 6px 3px 6px;
+}
+
+.genre-item .item-info span {
+    color: black;
+}

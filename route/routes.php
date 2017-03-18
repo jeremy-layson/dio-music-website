@@ -5,6 +5,8 @@
 
     include_once('./routeClass.php');
     include_once('../controller/contCommon.php');
+    include_once('../model/modelCommon.php');
+
 
     $oRoute = new Router();
 
@@ -13,14 +15,20 @@
     $sFileName = $oRoute->exec();
     
     include_once($sFileName['controller']['fileName']);
-
+    
     $oController = new $sFileName['controller']['className'];
-    $oController->exec();
+
+    
+    $oController->exec($sFileName['params']);
 
 
     function isResource()
     {
         if (strpos($_SERVER['REQUEST_URI'], '/resource/') > 0) {
+            return true;
+        }
+
+        if (strpos($_SERVER['REQUEST_URI'], '/template/') > 0) {
             return true;
         }
         return false;

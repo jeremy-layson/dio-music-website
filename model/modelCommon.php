@@ -1,34 +1,32 @@
 <?php
 
 /**
- * common class for model
- * @abstract
+ * model common class
  *
+ * @package music
  * @author Jeremy Layson <jeremy.b.layson@gmail.com>
- * @since 03. 07. 2017
+ * @since 03. 10. 2017
  * @version 1.0
  */
-abstract class modelCommon
+class modelCommon
 {
     /**
-     * 쿠키 객체
-     *
-     * @var oModel
+     * @var mySQL Connection
      */
-    protected static $oModel;
+    protected $dbConn;
 
     /**
-     * 쿠키 객체
-     *
-     * @return oModel
+     * create the sql connection
      */
-    private static function _instance()
+    protected function __construct()
     {
-        if (is_object(self::$oCookie) === false) {
-            self::$oCookie = new utilCookie;
-        }
+        require_once('connection.php');
+        $this->dbConn = $db;
+    }
 
-        return self::$oCookie;
+    protected function closeConn()
+    {
+        mysqli_close($this->dbConn);
     }
 }
 

@@ -23,11 +23,16 @@ class modelMusic extends modelCommon
     public static function instance()
     {
         if (is_object(self::$oModel) === false) {
-
                 self::$oModel = new self;
         }
-
         return self::$oModel;
+    }
+
+    public function createMusic($aData)
+    {
+        $prepared = mysqli_prepare($this->dbConn, "INSERT INTO music VALUES(NULL, ?, ?, ?, ?, ?, ?, 0)");
+        $prepared->bind_param('ssssss', $aData['mTitle'], $aData['mDesc'], $aData['mSinger'], $aData['mCover'], $aData['mAudio'], mktime());
+        $prepared->execute();
     }
 
     
