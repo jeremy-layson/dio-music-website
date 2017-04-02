@@ -41,66 +41,41 @@
                 </div>
             </div>
 
+            <?php
+                foreach ($aData as $sGenre => $aContent) {
+            ?>
             <div class="genre-container">
                 <div class="genre small-12">
                     <div class="genre-title column">
-                        Rock
+                        <?=$sGenre?>
+                        
                     </div>
                     <div class="genre-items small-12 row">
+                        <?php
+                            foreach ($aContent as $aMusic) {
+                        ?>
                         <div class="genre-item small-4 column">
                             <div class="item-photo">
-                                <img src="/resource/img/sample_1.jpg">
+                                <img src="/resource/upload/<?=$aMusic['m_cover']?>">
                             </div>
                             <div class="item-info">
                                 <div class="item-head">
-                                   <span class="item-title">Lorem Ipsum</span>
-                                    <span class="item-artist">Jeremy Layson</span>                                 
+                                   <span class="item-title"><?=$aMusic['m_title']?></span>
+                                    <span class="item-artist"><?=$aMusic['m_singers']?></span>                                 
                                 </div>
                                 <div class="item-description">
-                                    <span class="item-desc">Lorem ipsum dolor sit amet</span>
+                                    <span class="item-desc"><?=$aMusic['m_description']?></span>
                                     <div class="item-button">
                                         <button class="button submit">Play</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="genre-item small-4 column">
-                            <div class="item-photo">
-                                <img src="/resource/img/sample_2.jpg">
-                            </div>
-                            <div class="item-info">
-                                <div class="item-head">
-                                   <span class="item-title">Lorem Ipsum</span>
-                                    <span class="item-artist">Jeremy Layson</span>                                 
-                                </div>
-                                <div class="item-description">
-                                    <span class="item-desc">Lorem ipsum dolor sit amet</span>
-                                    <div class="item-button">
-                                        <button class="button submit">Play</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="genre-item small-4 column">
-                            <div class="item-photo">
-                                <img src="/resource/img/sample_3.jpg">
-                            </div>
-                            <div class="item-info">
-                                <div class="item-head">
-                                   <span class="item-title">Lorem Ipsum</span>
-                                    <span class="item-artist">Jeremy Layson</span>                                 
-                                </div>
-                                <div class="item-description">
-                                    <span class="item-desc">Lorem ipsum dolor sit amet</span>
-                                    <div class="item-button">
-                                        <button class="button submit">Play</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
+            <?php } ?>
         </div>
     </div>
 </body>

@@ -28,14 +28,88 @@ class modelMusic extends modelCommon
         return self::$oModel;
     }
 
+    /**
+     * create a new record of music
+     *
+     * @param Array aData
+     */
     public function createMusic($aData)
     {
-        $prepared = mysqli_prepare($this->dbConn, "INSERT INTO music VALUES(NULL, ?, ?, ?, ?, ?, ?, 0)");
-        $prepared->bind_param('ssssss', $aData['mTitle'], $aData['mDesc'], $aData['mSinger'], $aData['mCover'], $aData['mAudio'], mktime());
+        $prepared = mysqli_prepare($this->dbConn, "INSERT INTO music VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, 0, 0)");
+        $prepared->bind_param('sssssss', $aData['mTitle'], $aData['mDesc'], $aData['mSinger'], $aData['mCover'], $aData['mAudio'], date('Y-m-d h:i:s'), date('Y-m-d h:i:s'));
         $prepared->execute();
+        $this->closeConn();
     }
 
-    
+    /**
+     * modifies an existing music
+     *
+     * @param aData aData
+     */
+    public function updateMusic($aData)
+    {
+
+    }
+
+    /**
+     * soft deletes a music
+     *
+     * @param String sID 
+     */
+    public function deleteMusic($sID)
+    {
+
+    }
+
+    /**
+     * restore soft-deleted music
+     *
+     * @param String sID 
+     */
+    public function restoreMusic($sID)
+    {
+
+    }
+
+    /**
+     * approves a music
+     *
+     * @param String sID 
+     */
+    public function approveMusic($sID)
+    {
+
+    }
+
+    /**
+     * revert a approved music
+     *
+     * @param String sID 
+     */
+    public function disapproveMusic($sID)
+    {
+
+    }
+
+    /**
+     * get all music sorted by genre
+     *
+     * @return Array aList
+     */
+    public function getMusicByAllGenre()
+    {
+        $aList = [];
+
+        $sQuery = "SELECT * FROM music ORDER BY m_uploaded desc, m_genre";
+        $aResult = mysqli_query($this->dbConn, $sQuery);
+        while ($row = mysqli_fetch_array($aResult, MYSQLI_ASSOC)) {
+            if (isset($aList[$row['m_genre']]) === false || count($aList[$row['m_genre']]) < 3) {
+                $aList[$row['m_genre']][] = $row;
+            }
+        }
+
+        return $aList;
+    }
 }
 
 ?>

@@ -19,7 +19,17 @@ class contMusicCrudAction extends contCommon
     public function exec($aParams)
     {
         $this->oModel = $this->model('Music');
-        $this->saveData($aParams['post']);
+
+        $aData = $this->filterData($aParams);
+
+        if ($aData['status'] === false) {
+            $this->go('/music/crud/front', $aData['errors']);
+            return false;
+        }
+
+        $aData = $this->saveFiles($aData);
+
+        $this->saveData($aData['post']);
     }
 
     /**
@@ -30,7 +40,59 @@ class contMusicCrudAction extends contCommon
      */
     private function filterData($aData)
     {
+        $aData['status'] = true;
+        
+        switch($aData['post']['mGenre']) {
+            case 'Hiphop':
+            case 'Urban Groove':
+            case 'House Music':
+            case 'Gospel':
+            case 'Sungura':
+            case 'Reggie/Zim Dancehall':
+            case 'Afro Pop':
+                break;
+            default:
+                $aData['errors']['error'] = 'mGenre';
+                $aData['errors']['text'] = 'Tampered genre detected';
+                $aData['status'] = false;
+                return $aData;
+        }
+        if (($aData['files']['mCover']['tmp_name']) == '') {
+            $aData['errors']['error'] = 'mCover';
+            $aData['errors']['text'] = 'You must upload a valid cover image';
+            $aData['status'] = false;
+            return $aData;
+        }
 
+        if (($aData['files']['mAudio']['tmp_name']) == '') {
+            $aData['errors']['error'] = 'mAudio';
+            $aData['errors']['text'] = 'You must upload a valid audio file';
+            $aData['status'] = false;
+            return $aData;
+        }
+
+        
+
+        return $aData;
+    }
+
+    /**
+     * saves the necessary file for retrieval
+     *
+     * @param Array aData
+     * @return Array aData
+     */
+    private function saveFiles($aData)
+    {
+        //add getter of file extension
+        //move_uploaded_file($aData['files']['mAudio']['tmp_name'], '../resource/upload/' . md5_file($aData['files']['mAudio']['tmp_name']));
+
+        $sFileName = md5_file($aData['files']['mCover']['tmp_name']);
+        move_uploaded_file($aData['files']['mCover']['tmp_name'], '../resource/upload/' . $sFileName);
+        $aData['post']['mCover'] = $sFileName;
+        $aData['post']['mAudio'] = 'blank';
+
+        return $aData;
     }
 
     /**

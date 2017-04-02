@@ -116,6 +116,13 @@
     padding: 3px 6px 3px 6px;
 }
 
+.genre-item .item-info .item-title {
+    font-weight: bold;
+}
+.genre-item .item-info .item-artist:before{
+    content: 'by ';
+}
+
 .genre-item .item-info span {
     color: black;
 }

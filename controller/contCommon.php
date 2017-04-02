@@ -143,5 +143,19 @@ abstract class contCommon
     {
         $this->$aDependencies[$sName] = $oObject;
     }
+
+    /**
+     * redirect to a 
+     */
+    protected function go($sLocation, $aParams)
+    {
+        $sParams = '';
+
+        foreach ($aParams as $sKey => $sParam) {
+            $sParams = $sParams . '&' . $sKey . '=' . $sParam;
+        }
+
+        header('Location: ' . $sLocation . '?' . substr($sParams, 1));
+    }
 }
 ?>

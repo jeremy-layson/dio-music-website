@@ -9,6 +9,11 @@
  */
 class contHome extends contCommon
 {
+    /**
+     * @var Object
+     */
+    private $oModel;
+
     public function exec($aParams)
     {
         $this->js('vendor/jquery.js');
@@ -19,7 +24,10 @@ class contHome extends contCommon
         $this->css('navbar.css');
         $this->css('foundation.min.css');
 
-        $this->view('home');
+        $this->oModel = $this->model('Music');
+
+        $aData = $this->oModel->getMusicByAllGenre();
+        $this->view('home', array('aData' => $aData)) ;
     }
 }
 

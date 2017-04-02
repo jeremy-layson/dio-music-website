@@ -13,6 +13,7 @@
     background-color: #324158;
     color: white;
     font-size: 1.5rem;
+    margin-bottom:15px;
 }
 
 .form-objects .form-header .header-text {
@@ -25,26 +26,5 @@
 
 .form-objects .form-field label {
     text-align: right;
-    font-size: 1.2em;
-}
-
-.form-body {
-    padding: 10px;
-}
-
-.form-error {
-    display: block;
-    padding: 10px 3px 10px 3px;
-    margin: 0px 0px 20px 0px !important;
-    background-color: rgba(255, 0, 0, 0.4);
-}
-
-.hidden {
-    display: none;
-}
-
-.error-text {
-    text-align: center;
-    color: white;
     font-size: 1.2em;
 }
