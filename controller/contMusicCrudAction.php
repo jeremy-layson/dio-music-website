@@ -70,11 +70,106 @@ class contMusicCrudAction extends contCommon
             $aData['status'] = false;
             return $aData;
         }
-
-        
+		
+		//get the file info
+		$aFileInfo = pathinfo($aData['files']['mCover']);
+		if ($this->isAudio($aFileInfo['extension']) === false) {
+			$aData['errors']['error'] = 'mCover';
+            $aData['errors']['text'] = 'You must upload a valid cover image';
+            $aData['status'] = false;
+            return $aData;
+		}
+		
+		//get the file info
+		$aFileInfo = pathinfo($aData['files']['mAudio']);
+		if ($this->isAudio($aFileInfo) === false) {
+			$aData['errors']['error'] = 'mAudio';
+            $aData['errors']['text'] = 'You must upload a valid audio file';
+            $aData['status'] = false;
+            return $aData;
+		}
+		
 
         return $aData;
     }
+	
+	/**
+     * checks the file extension if audio
+     *
+     * @param Array aFileInfo
+     * @return Boolean
+     */
+    private function isAudio($aFileInfo)
+    {
+		$aAllowed = [
+			'3gp',
+			'aa',
+			'aac',
+			'aax',
+			'act',
+			'aiff',
+			'amr',
+			'ape',
+			'au',
+			'awb',
+			'dct',
+			'dss',
+			'dvf',
+			'flac',
+			'gsm',
+			'iklax',
+			'ivs',
+			'm4a',
+			'm4b',
+			'm4p',
+			'mmf',
+			'mp3',
+			'mpc',
+			'msv',
+			'ogg',
+			'oga',
+			'mogg',
+			'opus',
+			'ra',
+			'rm',
+			'raw',
+			'sln',
+			'tta',
+			'vox',
+			'wav',
+			'wma',
+			'wv',
+			'webm'
+		];
+		
+		if (in_array($aFileInfo['extension'], $aAllowed) === false) {
+			return false;
+		}
+		return true;
+	}
+	/**
+     * checks the file extension if audio
+     *
+     * @param Array aFileInfo
+     * @return Boolean
+     */
+    private function isImage($sFileName)
+    {
+		$aAllowed = [
+			'jpg',
+			'jpeg',
+			'png',
+			'gif',
+			'svg',
+			'webp',
+			'bmp'
+		];
+		
+		if (in_array($sFileName, $aAllowed) === false) {
+			return false;
+		}
+		return true;
+	}
 
     /**
      * saves the necessary file for retrieval

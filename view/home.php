@@ -73,6 +73,10 @@
                         </div>
                         <?php } ?>
                     </div>
+					<hr/>
+					<div class="more-button">
+						<a href="/music/genre?category=<?=$sGenre?>" class="more button" >Discover more</a>
+					</div>
                 </div>
             </div>
             <?php } ?>

@@ -96,6 +96,11 @@
     font-size: 2em;
 }
 
+.genre .genre-items {
+	padding-top: .9375rem;
+	padding-bottom: .9375rem;
+}
+
 .genre .genre-items .genre-item {
 }
 
@@ -125,4 +130,8 @@
 
 .genre-item .item-info span {
     color: black;
+}
+
+.more {
+	background-color: rgb(110, 110, 110) !important;
 }

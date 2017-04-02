@@ -110,6 +110,30 @@ class modelMusic extends modelCommon
 
         return $aList;
     }
+	
+	/**
+     * get all music of the same genre
+     *
+     * @return Array aList
+     */
+    public function getMusicByGenre($sGenre)
+    {
+		$aList = [];
+        $prepared = mysqli_prepare($this->dbConn, "SELECT * FROM music WHERE m_genre = ? ORDER BY rand()");
+        $prepared->bind_param('s', $sGenre);
+        $prepared->execute();
+		
+		$result = $prepared->get_result();
+		
+		while ($row = $result->fetch_array(MYSQLI_ASSOC))
+        {
+            $aList[] = $row;
+        }
+		
+        $this->closeConn();
+
+        return $aList;
+    }
 }
 
 ?>

@@ -14,7 +14,13 @@
     $oRoute->set('/', 'contHome');
     $sFileName = $oRoute->exec();
     
-    include_once($sFileName['controller']['fileName']);
+	if (file_exists($sFileName['controller']['fileName']) === true) {
+		include_once($sFileName['controller']['fileName']);
+	} else {
+		Header("Location: /");
+		return false;
+	}	
+   
     
     $oController = new $sFileName['controller']['className'];
 
