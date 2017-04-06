@@ -1,0 +1,29 @@
+.play-container {
+    margin: 20px 20% 20px 20%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #324158;
+}
+
+.thumbnail {
+    padding: 0px;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.title {
+    font-size: 1.5em;
+}
+
+.singer {
+    font-size: 0.8em;
+    padding-left: 10px;
+    border-left: 3px solid #6b6c6f;
+}
+
+.description {
+    padding-top: 5px;
+}
+
