@@ -5,7 +5,6 @@
  *
  * @package account
  * @subpackage action
- * @author Jeremy Layson <jeremy.b.layson@gmail.com>
  * @since 03. 27. 2017
  * @version 1.0
  */
@@ -64,7 +63,11 @@ class contAccountAction extends contCommon
      */
     private function saveData($aData)
     {
-        $this->oModel->createAccount($aData);
+        if ($aData['mode'] == 'new') {
+            $this->oModel->createAccount($aData);
+        } else {
+            $this->oModel->updateAccount($aData);
+        }
     }
 }
 

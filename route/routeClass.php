@@ -3,7 +3,6 @@
 /**
  * router class
  *
- * @author Jeremy Layson <jeremy.b.layson@gmail.com>
  * @since 03. 06. 2017
  * @version 1.0
  */

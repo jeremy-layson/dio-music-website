@@ -59,6 +59,7 @@
                                 <label for="mCover">Cover image:</label>
                             </div>
                             <div class="column small-9">
+                                <span style="font-size: 0.7em">Ideal Size: 300x300</span>
                                 <input type="file" name="mCover" id="mCover">
                             </div>
                         </div>

@@ -5,12 +5,16 @@
  *
  * @package account
  * @subpackage front
- * @author Jeremy Layson <jeremy.b.layson@gmail.com>
  * @since 03. 27. 2017
  * @version 1.0
  */
 class contAccountFront extends contCommon
 {
+    /**
+     * @var Object
+     */
+    private $oModel;
+
     public function exec($aParams)
     {
         $this->js('vendor/jquery.js');
@@ -21,7 +25,34 @@ class contAccountFront extends contCommon
         $this->css('navbar.css');
         $this->css('foundation.min.css');
 
-        $this->view('account/account');
+        $this->oModel = $this->model('Account');
+
+        $aData = [
+            'mode' => 'new',
+            'u_username' => '',
+            'u_user_enabled' => '',
+            'u_name' => '',
+            'u_email' => '',
+            'u_atype' => '',
+            'u_id' => 0,
+            'fan' => 'selected',
+            'artist' => ''
+        ];
+
+        if (isset($_SESSION['current_user']) === true) {
+            $aData = $this->oModel->getAccount($_SESSION['current_user']['u_username']);
+            $aData['mode'] = 'edit';
+            $aData['u_user_enabled'] = 'disabled';
+            if ($aData['u_type'] == 'Artist') {
+                $aData['fan'] = '';
+                $aData['artist'] = 'selected';
+            } else {
+                $aData['fan'] = 'selected';
+                $aData['artist'] = '';
+            }
+        }
+
+        $this->view('account/account', array('data' => $aData));
     }
 }
 

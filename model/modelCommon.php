@@ -4,7 +4,6 @@
  * model common class
  *
  * @package music
- * @author Jeremy Layson <jeremy.b.layson@gmail.com>
  * @since 03. 10. 2017
  * @version 1.0
  */

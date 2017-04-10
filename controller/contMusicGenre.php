@@ -3,7 +3,6 @@
 /**
  * Music genre location
  *
- * @author Jeremy Layson <jeremy.b.layson@gmail.com>
  * @since 04. 02. 2017
  * @version 1.0
  */

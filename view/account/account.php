@@ -22,7 +22,10 @@
                                 <label for="uName">Name:</label>
                             </div>
                             <div class="column small-9">
-                                <input type="text" name="uName" id="uName">
+                                <input type="hidden" name="mode" value="<?=$data['mode']?>">
+                                <input type="hidden" name="u_id" value="<?=$data['u_id']?>">
+                                
+                                <input type="text" name="uName" id="uName" value="<?=$data['u_name']?>">
                             </div>
                         </div>
                         <div class="form-field row">
@@ -30,7 +33,7 @@
                                 <label for="uUserName">Username:</label>
                             </div>
                             <div class="column small-9">
-                                <input type="text" name="uUserName" id="uUserName">
+                                <input type="text" name="uUserName" id="uUserName" value="<?=$data['u_username']?>" <?=$data['u_user_enabled']?>>
                             </div>
                         </div>
                         <div class="form-field row">
@@ -54,7 +57,7 @@
                                 <label for="uEmail">Email:</label>
                             </div>
                             <div class="column small-9">
-                                <input type="text" name="uEmail" id="uEmail">
+                                <input type="text" name="uEmail" id="uEmail" value="<?=$data['u_email']?>">
                             </div>
                         </div>
                         <div class="form-field row">
@@ -62,9 +65,9 @@
                                 <label for="uType">Account Type:</label>
                             </div>
                             <div class="column small-9">
-                                <select name="uType" id="uEmail">
-                                    <option>Fan</option>
-                                    <option>Artist</option>
+                                <select name="uType" id="uType">
+                                    <option <?=$data['fan']?>>Fan</option>
+                                    <option <?=$data['artist']?>>Artist</option>
                                 </select>
                             </div>
                         </div>

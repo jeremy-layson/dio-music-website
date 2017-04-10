@@ -140,3 +140,21 @@
 .more {
 	background-color: rgb(110, 110, 110) !important;
 }
+
+.top-item {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #324158;
+    border: 2px solid #324158;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.top-item:hover {
+    color: #324158;
+    background-color: white;
+}
+
+.top-item .top-singer {
+    font-size: 0.8em;
+}

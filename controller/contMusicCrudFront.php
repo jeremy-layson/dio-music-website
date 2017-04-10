@@ -5,7 +5,6 @@
  *
  * @package music
  * @subpackage CRUD front
- * @author Jeremy Layson <jeremy.b.layson@gmail.com>
  * @since 03. 16. 2017
  * @version 1.0
  */

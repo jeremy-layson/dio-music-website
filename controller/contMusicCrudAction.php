@@ -5,7 +5,6 @@
  *
  * @package music
  * @subpackage CRUD action
- * @author Jeremy Layson <jeremy.b.layson@gmail.com>
  * @since 03. 18. 2017
  * @version 1.0
  */
@@ -180,12 +179,17 @@ class contMusicCrudAction extends contCommon
     private function saveFiles($aData)
     {
         //add getter of file extension
-        //move_uploaded_file($aData['files']['mAudio']['tmp_name'], '../resource/upload/' . md5_file($aData['files']['mAudio']['tmp_name']));
-
-        $sFileName = md5_file($aData['files']['mCover']['tmp_name']);
+        
+        $aImageInfo = pathinfo($aData['files']['mCover']);
+        $aMusicInfo = pathinfo($aData['files']['mAudio']);
+        
+        $sFileName = md5_file($aData['files']['mCover']['tmp_name']) . '.' . $aImageInfo['extension'];
         move_uploaded_file($aData['files']['mCover']['tmp_name'], '../resource/upload/' . $sFileName);
         $aData['post']['mCover'] = $sFileName;
-        $aData['post']['mAudio'] = 'blank';
+
+        $sFileName = md5_file($aData['files']['mAUdio']['tmp_name']) . '.' . $aMusicInfo['extension'];
+        move_uploaded_file($aData['files']['mAudio']['tmp_name'], '../resource/upload/' . $sFileName);    
+        $aData['post']['mAudio'] = $sFileName;
 
         return $aData;
     }

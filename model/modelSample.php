@@ -4,7 +4,6 @@
  * Music model class
  *
  * @package music
- * @author Jeremy Layson <jeremy.b.layson@gmail.com>
  * @since 03. 18. 2017
  * @version 1.0
  */

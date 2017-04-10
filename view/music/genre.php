@@ -26,7 +26,7 @@
 								<div class="item-description">
 									<span class="item-desc"><?=$aMusic['m_description']?></span>
 									<div class="item-button">
-										<button class="button submit">Play</button>
+										<a href="/music/play?id=<?=$aMusic['m_id']?>" class="button submit">Play</a>
 									</div>
 								</div>
 							</div>

@@ -3,7 +3,6 @@
 /**
  * base controller class
  *
- * @author Jeremy Layson <jeremy.b.layson@gmail.com>
  * @since 03. 07. 2017
  * @version 1.0
  */
@@ -24,6 +23,12 @@ abstract class contCommon
      * @var Array of Object
      */
     protected $aDependencies;
+
+    public function __construct()
+    {
+        session_start();
+    }
+
     /**
      * inserts the view file
      *

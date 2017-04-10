@@ -3,7 +3,6 @@
 /**
  * homepage class
  *
- * @author Jeremy Layson <jeremy.b.layson@gmail.com>
  * @since 03. 08. 2017
  * @version 1.0
  */
@@ -21,13 +20,16 @@ class contHome extends contCommon
         $this->js('app.js');
 
         $this->css('/home/home.css');
-        $this->css('navbar.css');
+        
         $this->css('foundation.min.css');
-
+        $this->css('navbar.css');
+        
         $this->oModel = $this->model('Music');
 
         $aData = $this->oModel->getMusicByAllGenre();
-        $this->view('home', array('aData' => $aData)) ;
+
+        $aHot = $this->oModel->getHot();
+        $this->view('home', array('aData' => $aData, 'hot' => $aHot)) ;
     }
 }
 
