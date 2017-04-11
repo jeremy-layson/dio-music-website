@@ -34,10 +34,9 @@ class modelMusic extends modelCommon
      */
     public function createMusic($aData)
     {
-        $prepared = mysqli_prepare($this->dbConn, "INSERT INTO music VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, 0, 0)");
-        $prepared->bind_param('sssssss', $aData['mTitle'], $aData['mDesc'], $aData['mSinger'], $aData['mCover'], $aData['mAudio'], date('Y-m-d h:i:s'), date('Y-m-d h:i:s'));
+        $prepared = mysqli_prepare($this->dbConn, "INSERT INTO music VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 0)");
+        $prepared->bind_param('sssssssss', $aData['mTitle'], $aData['mDesc'], $aData['mSinger'], $aData['mCover'], $aData['mAudio'], $aData['mVideo'], $aData['mGenre'], date('Y-m-d h:i:s'), date('Y-m-d h:i:s'));
         $prepared->execute();
-        $this->closeConn();
     }
 
     /**
@@ -128,8 +127,6 @@ class modelMusic extends modelCommon
         {
             $aList[] = $row;
         }
-		
-        $this->closeConn();
 
         return $aList;
     }
@@ -163,7 +160,6 @@ class modelMusic extends modelCommon
         $prepared = mysqli_prepare($this->dbConn, "INSERT INTO stats VALUES(NULL, ?, ?)");
         $prepared->bind_param('ss', $sId , date('Y-m-d h:i:s'));
         $prepared->execute();
-        $this->closeConn();
     }
 
     /**
@@ -182,7 +178,6 @@ class modelMusic extends modelCommon
             $aList[] = $this->getSpecificMusic($row['s_music']);
         }
         
-        $this->closeConn();
 
         return $aList;
     }

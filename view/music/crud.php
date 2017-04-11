@@ -73,17 +73,24 @@
                         </div>
                         <div class="form-field row">
                             <div class="column small-3">
+                                <label for="mVideo">Video Embed:</label>
+                            </div>
+                            <div class="column small-9">
+                                <textarea name="mVideo" id="mVideo" placeholder="Youtube embed code"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-field row">
+                            <div class="column small-3">
                                 <label for="mGenre">Genre:</label>
                             </div>
                             <div class="column small-9">
                                 <select name="mGenre" id="mGenre">
                                     <option>Hiphop</option>
-                                    <option>Zim Dancehall</option>
+                                    <option>Reggie/Zim Dancehall</option>
                                     <option>Urban Groove</option>
                                     <option>House Music</option>
                                     <option>Gospel</option>
                                     <option>Sungura</option>
-                                    <option>Reggae</option>
                                     <option>Afro Pop</option>
                                 </select>
                             </div>

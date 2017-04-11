@@ -31,10 +31,24 @@
                         </span>
                     </div>
                     <div class="music">
-                    <video controls="" autoplay="true" name="media"><source src="/resource/upload/<?=$data['m_music_file']?>" type="audio/mpeg"></video>
+                    <audio controls>
+                        <source src="/resource/upload/<?=$data['m_music_file']?>">
+                    </audio>
                     </div>
                 </div>
             </div>
+
+            <div class="row small-12">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/iq_d8VSM0nw" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <?php
+                if (isset($_SESSION['current_user']) === true) {
+            ?>
+
+            <?php
+                }
+            ?>
         </div>
 
         <div class="genre-container">

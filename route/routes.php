@@ -24,7 +24,6 @@
     
     $oController = new $sFileName['controller']['className'];
 
-    
     $oController->exec($sFileName['params']);
 
 

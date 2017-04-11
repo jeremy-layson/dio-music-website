@@ -8,11 +8,11 @@
     ?>
     <div class="accounts row">
             <div class="small-12 column no-padding">
-                <a href="/account/front">Account</a>
+                <!-- <a href="/account/front">Account</a> -->
                 <?php
                     if ($_SESSION['current_user']['u_type'] == 'Artist') {
                 ?>
-                    <span>|</span>
+                    <!-- <span>|</span> -->
                     <a href="/music/crud/front">Upload</a> 
                 <?php
                     }
@@ -35,8 +35,8 @@
             </div>
             <div class="small-6 column no-padding">
                 <a class="submit-button">Submit</a>
-                <span>|</span>
-                <a href="/account/front">Register</a>    
+                <!-- <span>|</span>
+                <a href="/account/front">Register</a>   -->  
             </div>
         </form>
     </div>

@@ -21,6 +21,8 @@ class contMusicCrudAction extends contCommon
 
         $aData = $this->filterData($aParams);
 
+        var_dump($aData);
+        
         if ($aData['status'] === false) {
             $this->go('/music/crud/front', $aData['errors']);
             return false;
@@ -29,6 +31,8 @@ class contMusicCrudAction extends contCommon
         $aData = $this->saveFiles($aData);
 
         $this->saveData($aData['post']);
+
+        $this->go('/');
     }
 
     /**
@@ -41,49 +45,49 @@ class contMusicCrudAction extends contCommon
     {
         $aData['status'] = true;
         
-        switch($aData['post']['mGenre']) {
-            case 'Hiphop':
-            case 'Urban Groove':
-            case 'House Music':
-            case 'Gospel':
-            case 'Sungura':
-            case 'Reggie/Zim Dancehall':
-            case 'Afro Pop':
-                break;
-            default:
-                $aData['errors']['error'] = 'mGenre';
-                $aData['errors']['text'] = 'Tampered genre detected';
-                $aData['status'] = false;
-                return $aData;
-        }
-        if (($aData['files']['mCover']['tmp_name']) == '') {
+        // switch($aData['post']['mGenre']) {
+        //     case 'Hiphop':
+        //     case 'Urban Groove':
+        //     case 'House Music':
+        //     case 'Gospel':
+        //     case 'Sungura':
+        //     case 'Reggie/Zim Dancehall':
+        //     case 'Afro Pop':
+        //         break;
+        //     default:
+        //         $aData['errors']['error'] = 'mGenre';
+        //         $aData['errors']['text'] = 'Tampered genre detected';
+        //         $aData['status'] = false;
+        //         return $aData;
+        // }
+        if (($aData['files']['mCover']['name']) == '') {
             $aData['errors']['error'] = 'mCover';
-            $aData['errors']['text'] = 'You must upload a valid cover image';
+            $aData['errors']['text'] = 'You must upload a valid cover image4';
             $aData['status'] = false;
             return $aData;
         }
 
-        if (($aData['files']['mAudio']['tmp_name']) == '') {
+        if (($aData['files']['mAudio']['name']) == '') {
             $aData['errors']['error'] = 'mAudio';
-            $aData['errors']['text'] = 'You must upload a valid audio file';
+            $aData['errors']['text'] = 'You must upload a valid audio file3';
             $aData['status'] = false;
             return $aData;
         }
 		
 		//get the file info
-		$aFileInfo = pathinfo($aData['files']['mCover']);
-		if ($this->isAudio($aFileInfo['extension']) === false) {
+		$aFileInfo = pathinfo($aData['files']['mCover']['name']);
+		if ($this->isImage($aFileInfo['extension']) === false) {
 			$aData['errors']['error'] = 'mCover';
-            $aData['errors']['text'] = 'You must upload a valid cover image';
+            $aData['errors']['text'] = 'You must upload a valid cover image2';
             $aData['status'] = false;
             return $aData;
 		}
 		
 		//get the file info
-		$aFileInfo = pathinfo($aData['files']['mAudio']);
+		$aFileInfo = pathinfo($aData['files']['mAudio']['name']);
 		if ($this->isAudio($aFileInfo) === false) {
 			$aData['errors']['error'] = 'mAudio';
-            $aData['errors']['text'] = 'You must upload a valid audio file';
+            $aData['errors']['text'] = 'You must upload a valid audio file1';
             $aData['status'] = false;
             return $aData;
 		}
@@ -140,7 +144,6 @@ class contMusicCrudAction extends contCommon
 			'wv',
 			'webm'
 		];
-		
 		if (in_array($aFileInfo['extension'], $aAllowed) === false) {
 			return false;
 		}
@@ -180,14 +183,14 @@ class contMusicCrudAction extends contCommon
     {
         //add getter of file extension
         
-        $aImageInfo = pathinfo($aData['files']['mCover']);
-        $aMusicInfo = pathinfo($aData['files']['mAudio']);
+        $aImageInfo = pathinfo($aData['files']['mCover']['name']);
+        $aMusicInfo = pathinfo($aData['files']['mAudio']['name']);
         
         $sFileName = md5_file($aData['files']['mCover']['tmp_name']) . '.' . $aImageInfo['extension'];
         move_uploaded_file($aData['files']['mCover']['tmp_name'], '../resource/upload/' . $sFileName);
         $aData['post']['mCover'] = $sFileName;
 
-        $sFileName = md5_file($aData['files']['mAUdio']['tmp_name']) . '.' . $aMusicInfo['extension'];
+        $sFileName = md5_file($aData['files']['mAudio']['tmp_name']) . '.' . $aMusicInfo['extension'];
         move_uploaded_file($aData['files']['mAudio']['tmp_name'], '../resource/upload/' . $sFileName);    
         $aData['post']['mAudio'] = $sFileName;
 

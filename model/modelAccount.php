@@ -37,7 +37,6 @@ class modelAccount extends modelCommon
         $prepared = mysqli_prepare($this->dbConn, "INSERT INTO `user` VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, '0', 'default.png')");
         $prepared->bind_param('ssssssss', $aData['uName'], $aData['uUserName'], $aData['uPassword'], $aData['uEmail'], $aData['uActivated'], date('Y-m-d h:i:s'), date('Y-m-d h:i:s'), $aData['uType']);
         $prepared->execute();
-        $this->closeConn();
     }
 
     /**
@@ -50,7 +49,6 @@ class modelAccount extends modelCommon
         $prepared = mysqli_prepare($this->dbConn, "UPDATE user SET u_name = ?, u_password = ?, u_email = ?, u_type = ? WHERE u_id = ?");
         $prepared->bind_param('sssss', $aData['uName'], $aData['uPassword'], $aData['uEmail'], $aData['uType'], $aData['u_id']);
         $prepared->execute();
-        $this->closeConn();
     }
 
     /**
