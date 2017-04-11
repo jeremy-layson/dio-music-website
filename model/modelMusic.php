@@ -56,6 +56,9 @@ class modelMusic extends modelCommon
      */
     public function deleteMusic($sID)
     {
+        $prepared = mysqli_prepare($this->dbConn, "UPDATE music set m_deleted = 1 where m_id = ?");
+        $prepared->bind_param('s', $sID);
+        $prepared->execute();
 
     }
 
@@ -168,14 +171,22 @@ class modelMusic extends modelCommon
     public function getHot()
     {
         $aList = [];
-        $prepared = mysqli_prepare($this->dbConn, "SELECT count(s_id) as count, s_music FROM `stats` GROUP BY s_music ORDER by count(s_id) DESC LIMIT 12");
+        $prepared = mysqli_prepare($this->dbConn, "SELECT count(s_id) as count, s_music FROM `stats` GROUP BY s_music ORDER by count(s_id) DESC");
         $prepared->execute();
         
         $result = $prepared->get_result();
         
         while ($row = $result->fetch_array(MYSQLI_ASSOC))
         {
-            $aList[] = $this->getSpecificMusic($row['s_music']);
+            if (count($aList) >= 12) {
+                break;
+            }
+            
+            $aMusic = $this->getSpecificMusic($row['s_music']);
+
+            if (count($aMusic) !== 0) {
+                $aList[] = $aMusic;
+            }
         }
         
 

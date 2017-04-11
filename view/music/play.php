@@ -45,7 +45,9 @@
             <?php
                 if (isset($_SESSION['current_user']) === true) {
             ?>
-
+            <div class="row small-12">
+                <a href="/music/delete?id=<?=$data['m_id']?>" class="button warning delete-button">Delete</a>
+            </div>
             <?php
                 }
             ?>

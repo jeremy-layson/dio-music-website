@@ -18,6 +18,7 @@ class contMusicPlay extends contCommon
         $this->js('vendor/jquery.js');
         $this->js('vendor/foundation.min.js');
         $this->js('app.js');
+        $this->js('play.js');
 
 
         $this->css('navbar.css');
