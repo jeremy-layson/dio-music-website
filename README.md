@@ -6,4 +6,16 @@ Add music modification
 *Add login panel
 *Add SERVER variable for login
 *Add music playing
-Stats
+*Stats
+
+
+approve list
+songs list
+users list
+
+Comments, likes, shares
+Login/reg by facebook
+
+Date of release
+
+Blog?

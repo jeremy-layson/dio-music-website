@@ -44,11 +44,15 @@
 
             <?php
                 if (isset($_SESSION['current_user']) === true) {
+                    if (($_SESSION['current_user']['u_type'] == 'Admin') ||
+                        (($_SESSION['current_user']['u_type'] == 'Artist') &&
+                        ($_SESSION['current_user']['u_id'] == $data['m_uploader']) )) {
             ?>
             <div class="row small-12">
                 <a href="/music/delete?id=<?=$data['m_id']?>" class="button warning delete-button">Delete</a>
             </div>
             <?php
+                    }
                 }
             ?>
         </div>

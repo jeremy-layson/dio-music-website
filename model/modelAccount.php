@@ -67,5 +67,40 @@ class modelAccount extends modelCommon
         
         return $result->fetch_array(MYSQLI_ASSOC);
     }
+
+    /**
+     * Get account list
+     *
+     * @param String search
+     * @param String offset
+     * @return Array
+     */
+    public function getAccounts($search, $offset)
+    {
+        $aList = [];
+        $offset = $offset * 20;
+
+        if ($search === false) {
+            $prepared = mysqli_prepare($this->dbConn, "SELECT * FROM user WHERE u_deleted = 0 LIMIT 20 OFFSET ?");
+            $prepared->bind_param('s', $offset);
+        } else {
+            $prepared = mysqli_prepare($this->dbConn, "SELECT * FROM user WHERE (u_name LIKE ? OR u_username LIKE ?) AND u_deleted = 0 LIMIT 20 OFFSET ?");
+            $search = '%' . $search . '%';
+            $prepared->bind_param('sss', $search, $search, $offset);
+        }
+        
+        $prepared->execute();
+        
+        $result = $prepared->get_result();
+        
+        while ($row = $result->fetch_array(MYSQLI_ASSOC))
+        {
+            $aList[] = $row;
+        }
+
+        $prepared->close();
+        
+        return $aList;
+    }
 }
 ?>

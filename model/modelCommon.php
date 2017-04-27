@@ -19,11 +19,11 @@ class modelCommon
      */
     protected function __construct()
     {
-        require_once('connection.php');
+        require('connection.php');
         $this->dbConn = $db;
     }
 
-    protected function closeConn()
+    public function closeConn()
     {
         mysqli_close($this->dbConn);
     }

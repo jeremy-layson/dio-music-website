@@ -1,0 +1,15 @@
+.active-1 {
+    background-color: green;
+}
+
+.active-0 {
+    background-color: red;
+}
+
+.no-padding {
+    padding: 0px !important;
+}
+
+.no-margin {
+    margin: 0px !important;
+}

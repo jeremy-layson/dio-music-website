@@ -19,7 +19,7 @@ class contHome extends contCommon
         $this->js('vendor/foundation.min.js');
         $this->js('app.js');
 
-        $this->css('/home/home.css');
+        $this->css('home/home.css');
         
         $this->css('foundation.min.css');
         $this->css('navbar.css');

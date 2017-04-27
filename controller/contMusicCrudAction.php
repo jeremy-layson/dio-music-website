@@ -203,6 +203,7 @@ class contMusicCrudAction extends contCommon
      */
     private function saveData($aData)
     {
+        $aData['current_user'] = $_SESSION['current_user'];
         $this->oModel->createMusic($aData);
     }
 }

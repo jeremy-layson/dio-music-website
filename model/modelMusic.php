@@ -34,8 +34,8 @@ class modelMusic extends modelCommon
      */
     public function createMusic($aData)
     {
-        $prepared = mysqli_prepare($this->dbConn, "INSERT INTO music VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 0)");
-        $prepared->bind_param('sssssssss', $aData['mTitle'], $aData['mDesc'], $aData['mSinger'], $aData['mCover'], $aData['mAudio'], $aData['mVideo'], $aData['mGenre'], date('Y-m-d h:i:s'), date('Y-m-d h:i:s'));
+        $prepared = mysqli_prepare($this->dbConn, "INSERT INTO music VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 0)");
+        $prepared->bind_param('ssssssssss', $aData['current_user']['u_id'], $aData['mTitle'], $aData['mDesc'], $aData['mSinger'], $aData['mCover'], $aData['mAudio'], $aData['mVideo'], $aData['mGenre'], date('Y-m-d h:i:s'), date('Y-m-d h:i:s'));
         $prepared->execute();
     }
 
@@ -209,6 +209,40 @@ class modelMusic extends modelCommon
         {
             $aList[] = $row;
         }
+
+        return $aList;
+    }
+
+    /**
+     * Get music list
+     *
+     * @param String search
+     * @param String offset
+     * @return Array
+     */
+    public function getAdminMusic($search, $offset)
+    {
+        $aList = [];
+        $offset = $offset * 20;
+
+        if ($search === false) {
+            $prepared = mysqli_prepare($this->dbConn, "SELECT * FROM music WHERE m_deleted = 0 LIMIT 20 OFFSET ?");
+            $prepared->bind_param('s', $offset);
+        } else {
+            $prepared = mysqli_prepare($this->dbConn, "SELECT * FROM music WHERE (m_title LIKE ? OR m_description LIKE ? OR m_singers LIKE ?) AND m_deleted = 0 LIMIT 20 OFFSET ?");
+            $search = '%' . $search . '%';
+            $prepared->bind_param('ssss', $search, $search, $search, $offset);
+        }
+        
+        $prepared->execute();
+        
+        $result = $prepared->get_result();
+        
+        while ($row = $result->fetch_array(MYSQLI_ASSOC))
+        {
+            $aList[] = $row;
+        }
+        $prepared->close();
 
         return $aList;
     }
