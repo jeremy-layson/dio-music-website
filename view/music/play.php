@@ -2,10 +2,40 @@
 <html>
 <head>
     <title><?=$data['m_title']?></title>
+    <meta property="og:url"           content="http://<?=$_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']?>" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="<?=$data['m_title']?>" />
+    <meta property="og:description"   content="<?=$data['m_description']?>" />
+    <meta property="og:image"         content="<?=$data['m_cover']?>" />
+
     <?=$css_import?>
     <?=$js_import?>
 </head>
 <body>
+
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
+    // Additional initialization code here
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+</script>
+
     <div class="main-body">
         <?php require_once('../view/template/navbar.php'); ?>
         
@@ -38,9 +68,22 @@
                 </div>
             </div>
 
-            <div class="row small-12">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/iq_d8VSM0nw" frameborder="0" allowfullscreen></iframe>
+
+            <!-- Your like button code -->
+            <div class="fb-like" 
+            data-href="http://<?=$_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']?>" 
+            data-layout="standard" 
+            data-action="like" 
+            data-share="true"
+            data-show-faces="true">
             </div>
+
+
+            <?php if ($data['m_video_embed'] != '') { ?>
+                <div class="flex-video">
+                    <?=$data['m_video_embed']?>
+                </div>
+            <?php } ?>
 
             <?php
                 if (isset($_SESSION['current_user']) === true) {

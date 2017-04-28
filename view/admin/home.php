@@ -45,8 +45,11 @@
                     <?php foreach ($data['accounts'] as $account) { ?>
                         <tr>
                             <td class="no-padding">
-                                <div class="active-<?=$account['u_activated']?>">
-                                    &nbsp;
+                                <div class="switch large">
+                                    <input class="switch-input" id="largeSwitch" data-value="<?=$account['u_id']?>" type="checkbox" <?=$account['u_activated'] == '1' ? 'checked':''?>>
+                                    <label class="switch-paddle" for="largeSwitch">
+                                        <span class="show-for-sr">Activate Account</span>
+                                    </label>
                                 </div>
                             </td>
                             <td class="no-padding"><?=$account['u_name']?></td>
@@ -54,7 +57,7 @@
                             <td class="no-padding"><?=$account['u_type']?></td>
                             <td class="no-padding">
                                 <a href="#" class="button success">Edit</a>
-                                <a href="#" class="button warning">Delete</a>
+                                <a href="#" class="button warning delete-button">Delete</a>
                             </td>
                             
                         </tr>
@@ -115,8 +118,11 @@
                     <?php foreach ($data['musics'] as $music) { ?>
                         <tr>
                             <td class="no-padding">
-                                <div class="active-<?=$music['m_approved']?>">
-                                    &nbsp;
+                                <div class="switch large">
+                                    <input class="switch-input" id="largeSwitch" type="checkbox" <?=$music['m_approved'] == '1' ? 'checked':''?>>
+                                    <label class="switch-paddle" for="largeSwitch">
+                                        <span class="show-for-sr">Activate Account</span>
+                                    </label>
                                 </div>
                             </td>
                             <td class="no-padding"><?=$music['m_title']?></td>
@@ -124,7 +130,7 @@
                             <td class="no-padding"><?=date('F Y', strtotime($music['m_uploaded']))?></td>
                             <td class="no-padding">
                                 <a href="#" class="button success">Edit</a>
-                                <a href="#" class="button warning">Delete</a>
+                                <a href="#" class="button warning delete-button">Delete</a>
                             </td>
                             
                         </tr>

@@ -20,6 +20,8 @@ class contAdminHome extends contCommon
         $this->js('vendor/jquery.js');
         $this->js('vendor/foundation.min.js');
         $this->js('app.js');
+        $this->js('admin-home.js');
+
 
         $this->css('admin/home.css');
         
