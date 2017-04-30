@@ -21,6 +21,13 @@ class contApiActivate extends contCommon
         $this->oAccounts = $this->model('Account');
         $this->oMusic = $this->model('Music');
 
+        if ($aParams['post']['type'] == 'account') {
+            $value = $aParams['post']['value'] == 'true' ? 1:0;
+            $this->oAccounts->activateAccount($aParams['post']['id'], $value);
+        } else {
+            $value = $aParams['post']['value'] == 'true' ? 1:0;
+            $this->oMusic->activateMusic($aParams['post']['id'], $value);
+        }
     }
 }
 

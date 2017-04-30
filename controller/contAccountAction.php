@@ -26,7 +26,7 @@ class contAccountAction extends contCommon
         }
 
         $this->saveData($aData['post']);
-        $this->go('/account/front');
+        $this->go('/admin/home');
     }
 
     /**

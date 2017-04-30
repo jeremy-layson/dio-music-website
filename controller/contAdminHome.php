@@ -17,6 +17,16 @@ class contAdminHome extends contCommon
 
     public function exec($aParams)
     {
+        if (isset($_SESSION['current_user']) === true) {
+            if ($_SESSION['current_user']['u_type'] != 'Admin') {
+                $this->go('/');
+                return false;
+            }
+        } else {
+            $this->go('/');
+            return false;
+        }
+
         $this->js('vendor/jquery.js');
         $this->js('vendor/foundation.min.js');
         $this->js('app.js');

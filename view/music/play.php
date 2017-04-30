@@ -98,7 +98,10 @@
                     }
                 }
             ?>
+            <div width="100%" class="fb-comments" data-href="http://<?=$_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']?>" data-numposts="5"></div>
         </div>
+
+
 
         <div class="genre-container">
             <div class="genre small-12">

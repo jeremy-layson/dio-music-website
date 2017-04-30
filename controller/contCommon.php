@@ -150,7 +150,7 @@ abstract class contCommon
     }
 
     /**
-     * redirect to a 
+     * redirect to a url
      */
     protected function go($sLocation, $aParams)
     {

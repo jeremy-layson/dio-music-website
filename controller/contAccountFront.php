@@ -39,16 +39,30 @@ class contAccountFront extends contCommon
             'artist' => ''
         ];
 
-        if (isset($_SESSION['current_user']) === true) {
-            $aData = $this->oModel->getAccount($_SESSION['current_user']['u_username']);
+        if (isset($aParams['get']['id'])) {
+            $aData = $this->oModel->getAccount($aParams['get']['id']);
             $aData['mode'] = 'edit';
             $aData['u_user_enabled'] = 'disabled';
+
             if ($aData['u_type'] == 'Artist') {
                 $aData['fan'] = '';
                 $aData['artist'] = 'selected';
             } else {
                 $aData['fan'] = 'selected';
                 $aData['artist'] = '';
+            }
+        } else {
+            if (isset($_SESSION['current_user']) === true) {
+                $aData = $this->oModel->getAccount($_SESSION['current_user']['u_username']);
+                $aData['mode'] = 'edit';
+                $aData['u_user_enabled'] = 'disabled';
+                if ($aData['u_type'] == 'Artist') {
+                    $aData['fan'] = '';
+                    $aData['artist'] = 'selected';
+                } else {
+                    $aData['fan'] = 'selected';
+                    $aData['artist'] = '';
+                }
             }
         }
 

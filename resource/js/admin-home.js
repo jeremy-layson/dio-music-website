@@ -6,7 +6,15 @@ $(document).ready(function(){
         }
     });
 
-    $('.switch-input').click(function(e){
-        alert($(this).attr('data-value'));
+    $('.switch-input').on('click', function(e){
+        $.ajax({
+            type: 'POST',
+            url: '/api/activate',
+            data: {'value': $(this).is(':checked'), 'id': $(this).data('id'), 'type': $(this).data('type')},
+            success: function (data){
+                
+            },
+            async:false
+        });
     });
 });

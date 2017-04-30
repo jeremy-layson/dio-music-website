@@ -46,8 +46,8 @@
                         <tr>
                             <td class="no-padding">
                                 <div class="switch large">
-                                    <input class="switch-input" id="largeSwitch" data-value="<?=$account['u_id']?>" type="checkbox" <?=$account['u_activated'] == '1' ? 'checked':''?>>
-                                    <label class="switch-paddle" for="largeSwitch">
+                                    <input class="switch-input" id="largeSwitch_<?=$account['u_id']?>" data-type="account" data-id="<?=$account['u_id']?>" type="checkbox" <?=$account['u_activated'] == '1' ? 'checked':''?>>
+                                    <label class="switch-paddle" for="largeSwitch_<?=$account['u_id']?>">
                                         <span class="show-for-sr">Activate Account</span>
                                     </label>
                                 </div>
@@ -56,7 +56,7 @@
                             <td class="no-padding"><?=$account['u_username']?></td>
                             <td class="no-padding"><?=$account['u_type']?></td>
                             <td class="no-padding">
-                                <a href="#" class="button success">Edit</a>
+                                <a href="/account/front?id=<?=$account['u_id']?>" class="button success">Edit</a>
                                 <a href="#" class="button warning delete-button">Delete</a>
                             </td>
                             
@@ -119,8 +119,9 @@
                         <tr>
                             <td class="no-padding">
                                 <div class="switch large">
-                                    <input class="switch-input" id="largeSwitch" type="checkbox" <?=$music['m_approved'] == '1' ? 'checked':''?>>
-                                    <label class="switch-paddle" for="largeSwitch">
+                                    <input class="switch-input" id="largeSwitch_m_<?=$music['m_id']?>" data-type="music" data-id="<?=$music['m_id']?>" type="checkbox" <?=$music['m_approved'] == '1' ? 'checked':''?>>
+                                    
+                                    <label class="switch-paddle" for="largeSwitch_m_<?=$music['m_id']?>">
                                         <span class="show-for-sr">Activate Account</span>
                                     </label>
                                 </div>

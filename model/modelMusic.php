@@ -73,23 +73,18 @@ class modelMusic extends modelCommon
     }
 
     /**
-     * approves a music
+     * Activate/Deactivate a music
      *
-     * @param String sID 
+     * @param String id
+     * @param String value
      */
-    public function approveMusic($sID)
+    public function activateMusic($id, $value)
     {
+        $prepared = mysqli_prepare($this->dbConn, "UPDATE music SET m_approved = ? WHERE m_id = ?");
+        $prepared->bind_param('ss', $value, $id);
+        $prepared->execute();
 
-    }
-
-    /**
-     * revert a approved music
-     *
-     * @param String sID 
-     */
-    public function disapproveMusic($sID)
-    {
-
+        return $value;
     }
 
     /**

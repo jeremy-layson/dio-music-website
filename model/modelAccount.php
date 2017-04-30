@@ -59,8 +59,8 @@ class modelAccount extends modelCommon
      */
     public function getAccount($sId)
     {
-        $prepared = mysqli_prepare($this->dbConn, "SELECT * FROM user WHERE u_username = ? AND u_deleted = 0 LIMIT 1");
-        $prepared->bind_param('s', $sId);
+        $prepared = mysqli_prepare($this->dbConn, "SELECT * FROM user WHERE (u_username = ? OR u_id = ?) AND u_deleted = 0 LIMIT 1");
+        $prepared->bind_param('ss', $sId, $sId);
         $prepared->execute();
         
         $result = $prepared->get_result();
@@ -101,6 +101,21 @@ class modelAccount extends modelCommon
         $prepared->close();
         
         return $aList;
+    }
+
+    /**
+     * Activate/Deactivate an account
+     *
+     * @param String id
+     * @param String value
+     */
+    public function activateAccount($id, $value)
+    {
+        $prepared = mysqli_prepare($this->dbConn, "UPDATE user SET u_activated = ? WHERE u_id = ?");
+        $prepared->bind_param('ss', $value, $id);
+        $prepared->execute();
+
+        return $value;
     }
 }
 ?>
