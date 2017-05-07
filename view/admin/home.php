@@ -130,7 +130,7 @@
                             <td class="no-padding"><?=$music['m_singers']?></td>
                             <td class="no-padding"><?=date('F Y', strtotime($music['m_uploaded']))?></td>
                             <td class="no-padding">
-                                <a href="#" class="button success">Edit</a>
+                                <a href="/music/crud/front?id=$music['m_id']" class="button success">Edit</a>
                                 <a href="#" class="button warning delete-button">Delete</a>
                             </td>
                             
