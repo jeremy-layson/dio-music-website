@@ -15,6 +15,19 @@
                        Register
                     </span>
                 </div>
+                <?php
+                    $sClass = 'hidden';
+                    $sText = '';
+                    if (isset($_GET['error']) === true) {
+                        $sClass = '';
+                        $sText = $_GET['text'];
+                    }
+                ?>
+                <div class="form-error row small-12 <?=$sClass?>">
+                    <div class="error-text">
+                        <?=$sText?>
+                    </div>
+                </div>
                 <div class="form-body small-12">
                     <form action="/account/action" method="POST">
                         <div class="form-field row">

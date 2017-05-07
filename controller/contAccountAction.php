@@ -21,7 +21,8 @@ class contAccountAction extends contCommon
 
         $aData = $this->filterData($aParams);
 
-        if ($aData === false) {
+        if ($aData['status'] === false) {
+            $this->go('/account/front', $aData['errors']);
             return false;
         }
 
@@ -45,12 +46,29 @@ class contAccountAction extends contCommon
         } else if ($aData['post']['uType'] == 'Fan') {
             $aData['post']['uActivated'] = 1;
         } else {
-            return false;
+            $aData['errors']['error'] = 'uType';
+            $aData['errors']['text'] = 'Invalid type';
+            $aData['status'] = false;
+            return $aData;
         }
 
-        if (strcmp($aData['post']['uPassword'], $aData['post']['uRepass']) !== 0) {
-            return false;
+        //check email
+        $email = $_POST["uEmail"];
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $aData['errors']['error'] = 'uEmail';
+            $aData['errors']['text'] = 'Invalid email';
+            $aData['status'] = false;
+            return $aData;
         }
+        
+        if (strcmp($aData['post']['uPassword'], $aData['post']['uRepass']) !== 0) {
+            $aData['errors']['error'] = 'uPassword';
+            $aData['errors']['text'] = 'Passwords do not match';
+            $aData['status'] = false;
+            return $aData;
+        }
+
+        
 
         $aData['post']['uPassword'] = sha1(sha1(md5($aData['post']['uPassword'] . 'dioMugo_website')));
 

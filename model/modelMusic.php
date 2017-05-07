@@ -46,7 +46,18 @@ class modelMusic extends modelCommon
      */
     public function updateMusic($aData)
     {
-
+        $prepared = mysqli_prepare($this->dbConn, "UPDATE music SET m_title = ?, m_description = ?, m_singers = ?, m_cover = ?, m_music_file = ?, m_video_embed = ?, m_genre = ?, m_updated = ? WHERE m_id = ?");
+        $prepared->bind_param('sssssssss',
+            $aData['mTitle'],
+            $aData['mDesc'],
+            $aData['mSinger'],
+            $aData['mCover'],
+            $aData['mAudio'],
+            $aData['mVideo'],
+            $aData['mGenre'],
+            date('Y-m-d h:i:s'),
+            $aData['id']);
+        $prepared->execute();
     }
 
     /**
@@ -138,7 +149,7 @@ class modelMusic extends modelCommon
     public function getSpecificMusic($sId)
     {
         $prepared = mysqli_prepare($this->dbConn, "SELECT * FROM music WHERE m_id = ? AND m_approved = 1 AND m_deleted = 0  LIMIT 1");
-        $prepared->bind_param('i', $sId);
+        $prepared->bind_param('s', $sId);
         $prepared->execute();
         
         $result = $prepared->get_result();

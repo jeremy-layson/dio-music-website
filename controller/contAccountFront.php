@@ -29,6 +29,7 @@ class contAccountFront extends contCommon
 
         $aData = [
             'mode' => 'new',
+            'id'   => '0',
             'u_username' => '',
             'u_user_enabled' => '',
             'u_name' => '',
@@ -41,6 +42,7 @@ class contAccountFront extends contCommon
 
         if (isset($aParams['get']['id'])) {
             $aData = $this->oModel->getAccount($aParams['get']['id']);
+            $aData['id']   = $aParams['get']['id'];
             $aData['mode'] = 'edit';
             $aData['u_user_enabled'] = 'disabled';
 

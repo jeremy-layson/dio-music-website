@@ -30,12 +30,15 @@
                 </div>
                 <div class="form-body row small-12">
                     <form action="/music/crud/action" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="mode" value="<?=$data['mode']?>">
+                    <input type="hidden" name="id" value="<?=$data['id']?>">
+                    
                         <div class="form-field row">
                             <div class="column small-3">
                                 <label for="mTitle">Title:</label>
                             </div>
                             <div class="column small-9">
-                                <input type="text" name="mTitle" id="mTitle">
+                                <input type="text" name="mTitle" id="mTitle" value="<?=$data['mTitle']?>">
                             </div>
                         </div>
                         <div class="form-field row">
@@ -43,7 +46,7 @@
                                 <label for="mDesc">Description:</label>
                             </div>
                             <div class="column small-9">
-                                <textarea type="text" name="mDesc" id="mDesc"></textarea>
+                                <textarea type="text" name="mDesc" id="mDesc"><?=$data['mDesc']?></textarea>
                             </div>
                         </div>
                         <div class="form-field row">
@@ -51,7 +54,7 @@
                                 <label for="mSinger">Singer(s):</label>
                             </div>
                             <div class="column small-9">
-                                <input type="text" name="mSinger" id="mSinger">
+                                <input type="text" name="mSinger" id="mSinger" value="<?=$data['mSinger']?>">
                             </div>
                         </div>
                         <div class="form-field row">
@@ -76,7 +79,7 @@
                                 <label for="mVideo">Video Embed:</label>
                             </div>
                             <div class="column small-9">
-                                <textarea name="mVideo" id="mVideo" placeholder="Youtube embed code"></textarea>
+                                <textarea name="mVideo" id="mVideo" placeholder="Youtube embed code"><?=$data['mVideo']?></textarea>
                             </div>
                         </div>
                         <div class="form-field row">
@@ -85,13 +88,13 @@
                             </div>
                             <div class="column small-9">
                                 <select name="mGenre" id="mGenre">
-                                    <option>Hiphop</option>
-                                    <option>Reggie/Zim Dancehall</option>
-                                    <option>Urban Groove</option>
-                                    <option>House Music</option>
-                                    <option>Gospel</option>
-                                    <option>Sungura</option>
-                                    <option>Afro Pop</option>
+                                    <option <?=$data['Hiphop']?>>Hiphop</option>
+                                    <option <?=$data['Reggie/Zim Dancehall']?>>Reggie/Zim Dancehall</option>
+                                    <option <?=$data['Urban Groove']?>>Urban Groove</option>
+                                    <option <?=$data['House Music']?>>House Music</option>
+                                    <option <?=$data['Gospel']?>>Gospel</option>
+                                    <option <?=$data['Sungura']?>>Sungura</option>
+                                    <option <?=$data['Afro Pop']?>>Afro Pop</option>
                                 </select>
                             </div>
                         </div>

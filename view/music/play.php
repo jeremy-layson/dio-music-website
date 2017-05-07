@@ -41,10 +41,15 @@
         
         <div class="play-container">
             <div class="info-container row">
-                <div class="thumbnail small-4 column">
+                <div class="thumbnail small-6 column">
                     <img src="/resource/upload/<?=$data['m_cover']?>">
+                    <div class="music">
+                    <audio controls>
+                        <source src="/resource/upload/<?=$data['m_music_file']?>">
+                    </audio>
+                    </div>
                 </div>
-                <div class="details small-8 column">
+                <div class="details small-6 column">
                     <div class="title">
                         <span class="text">
                             <?=$data['m_title']?>
@@ -60,11 +65,7 @@
                             <?=$data['m_description']?>
                         </span>
                     </div>
-                    <div class="music">
-                    <audio controls>
-                        <source src="/resource/upload/<?=$data['m_music_file']?>">
-                    </audio>
-                    </div>
+                    
                 </div>
             </div>
 

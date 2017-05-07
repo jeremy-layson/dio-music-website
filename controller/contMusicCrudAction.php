@@ -20,8 +20,6 @@ class contMusicCrudAction extends contCommon
         $this->oModel = $this->model('Music');
 
         $aData = $this->filterData($aParams);
-
-        var_dump($aData);
         
         if ($aData['status'] === false) {
             $this->go('/music/crud/front', $aData['errors']);
@@ -44,53 +42,42 @@ class contMusicCrudAction extends contCommon
     private function filterData($aData)
     {
         $aData['status'] = true;
-        
-        // switch($aData['post']['mGenre']) {
-        //     case 'Hiphop':
-        //     case 'Urban Groove':
-        //     case 'House Music':
-        //     case 'Gospel':
-        //     case 'Sungura':
-        //     case 'Reggie/Zim Dancehall':
-        //     case 'Afro Pop':
-        //         break;
-        //     default:
-        //         $aData['errors']['error'] = 'mGenre';
-        //         $aData['errors']['text'] = 'Tampered genre detected';
-        //         $aData['status'] = false;
-        //         return $aData;
-        // }
-        if (($aData['files']['mCover']['name']) == '') {
-            $aData['errors']['error'] = 'mCover';
-            $aData['errors']['text'] = 'You must upload a valid cover image4';
-            $aData['status'] = false;
-            return $aData;
-        }
 
-        if (($aData['files']['mAudio']['name']) == '') {
-            $aData['errors']['error'] = 'mAudio';
-            $aData['errors']['text'] = 'You must upload a valid audio file3';
-            $aData['status'] = false;
-            return $aData;
+        if ($aData['post']['mode'] == 'new') {
+            if (($aData['files']['mCover']['name']) == '') {
+                $aData['errors']['error'] = 'mCover';
+                $aData['errors']['text'] = 'You must upload a cover image';
+                $aData['status'] = false;
+                return $aData;
+            }
+
+            if (($aData['files']['mAudio']['name']) == '') {
+                $aData['errors']['error'] = 'mAudio';
+                $aData['errors']['text'] = 'You must upload an audio file';
+                $aData['status'] = false;
+                return $aData;
+            }
+            
+            //get the file info
+            $aFileInfo = pathinfo($aData['files']['mCover']['name']);
+            
+            if ($this->isImage($aFileInfo['extension']) === false) {
+                $aData['errors']['error'] = 'mCover';
+                $aData['errors']['text'] = 'You must upload a valid cover image';
+                $aData['status'] = false;
+                return $aData;
+            }
+            
+            //get the file info
+            $aFileInfo = pathinfo($aData['files']['mAudio']['name']);
+            if ($this->isAudio($aFileInfo) === false) {
+                $aData['errors']['error'] = 'mAudio';
+                $aData['errors']['text'] = 'You must upload a valid audio file';
+                $aData['status'] = false;
+                return $aData;
+            }
         }
-		
-		//get the file info
-		$aFileInfo = pathinfo($aData['files']['mCover']['name']);
-		if ($this->isImage($aFileInfo['extension']) === false) {
-			$aData['errors']['error'] = 'mCover';
-            $aData['errors']['text'] = 'You must upload a valid cover image2';
-            $aData['status'] = false;
-            return $aData;
-		}
-		
-		//get the file info
-		$aFileInfo = pathinfo($aData['files']['mAudio']['name']);
-		if ($this->isAudio($aFileInfo) === false) {
-			$aData['errors']['error'] = 'mAudio';
-            $aData['errors']['text'] = 'You must upload a valid audio file1';
-            $aData['status'] = false;
-            return $aData;
-		}
+        
 		
 
         return $aData;
@@ -144,7 +131,7 @@ class contMusicCrudAction extends contCommon
 			'wv',
 			'webm'
 		];
-		if (in_array($aFileInfo['extension'], $aAllowed) === false) {
+		if (in_array(strtolower($aFileInfo['extension']), $aAllowed) === false) {
 			return false;
 		}
 		return true;
@@ -167,7 +154,7 @@ class contMusicCrudAction extends contCommon
 			'bmp'
 		];
 		
-		if (in_array($sFileName, $aAllowed) === false) {
+		if (in_array(strtolower($sFileName), $aAllowed) === false) {
 			return false;
 		}
 		return true;
@@ -182,17 +169,21 @@ class contMusicCrudAction extends contCommon
     private function saveFiles($aData)
     {
         //add getter of file extension
-        
-        $aImageInfo = pathinfo($aData['files']['mCover']['name']);
-        $aMusicInfo = pathinfo($aData['files']['mAudio']['name']);
-        
-        $sFileName = md5_file($aData['files']['mCover']['tmp_name']) . '.' . $aImageInfo['extension'];
-        move_uploaded_file($aData['files']['mCover']['tmp_name'], '../resource/upload/' . $sFileName);
-        $aData['post']['mCover'] = $sFileName;
 
-        $sFileName = md5_file($aData['files']['mAudio']['tmp_name']) . '.' . $aMusicInfo['extension'];
-        move_uploaded_file($aData['files']['mAudio']['tmp_name'], '../resource/upload/' . $sFileName);    
-        $aData['post']['mAudio'] = $sFileName;
+        if (($aData['files']['mCover']['name']) != '') {
+            $aImageInfo = pathinfo($aData['files']['mCover']['name']);
+            $sFileName = md5_file($aData['files']['mCover']['tmp_name']) . '.' . $aImageInfo['extension'];
+            move_uploaded_file($aData['files']['mCover']['tmp_name'], '../resource/upload/' . $sFileName);
+            $aData['post']['mCover'] = $sFileName;
+        }
+        
+        if (($aData['files']['mAudio']['name']) != '') {
+            $aMusicInfo = pathinfo($aData['files']['mAudio']['name']);
+            $sFileName = md5_file($aData['files']['mAudio']['tmp_name']) . '.' . $aMusicInfo['extension'];
+            move_uploaded_file($aData['files']['mAudio']['tmp_name'], '../resource/upload/' . $sFileName);    
+            $aData['post']['mAudio'] = $sFileName;
+        }
+        
 
         return $aData;
     }
@@ -204,7 +195,21 @@ class contMusicCrudAction extends contCommon
     private function saveData($aData)
     {
         $aData['current_user'] = $_SESSION['current_user'];
-        $this->oModel->createMusic($aData);
+
+        if ($aData['mode'] == 'new') {
+            $this->oModel->createMusic($aData);
+        } else {
+            $aMusic = $this->oModel->getSpecificMusic($aData['id']);
+
+            if (isset($aData['mAudio']) === false) {
+                $aData['mAudio'] = $aMusic['m_music_file'];
+            }
+            if (isset($aData['mCover']) === false) {
+                $aData['mCover'] = $aMusic['m_cover'];
+            }
+
+            $this->oModel->updateMusic($aData);
+        }
     }
 }
 
