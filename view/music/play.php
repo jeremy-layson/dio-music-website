@@ -69,7 +69,8 @@
                 </div>
             </div>
 
-
+            <?php if (isset($_SESSION['current_user']) === true) {
+            ?>
             <!-- Your like button code -->
             <div class="fb-like" 
             data-href="http://<?=$_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']?>" 
@@ -78,6 +79,7 @@
             data-share="true"
             data-show-faces="true">
             </div>
+            <?php } ?>
 
 
             <?php if ($data['m_video_embed'] != '') { ?>
@@ -99,7 +101,13 @@
                     }
                 }
             ?>
-            <div width="100%" class="fb-comments" data-href="http://<?=$_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']?>" data-numposts="5"></div>
+
+            <?php if (isset($_SESSION['current_user']) === true) {
+            ?>
+                <div width="100%" class="fb-comments" data-href="http://<?=$_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']?>" data-numposts="5"></div>
+            <?php } ?>
+
+            
         </div>
 
 
@@ -125,9 +133,7 @@
                         </div>
                     </a>
                 </div>
-            <?php
-                }
-            ?>
+            <?php } ?>
             </div>
         </div>
     </div>
