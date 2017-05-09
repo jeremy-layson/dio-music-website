@@ -35,7 +35,7 @@ class contAdminHome extends contCommon
 
         $this->css('admin/home.css');
         
-        $this->css('foundation.min.css');
+        $this->css('foundation.css');
         $this->css('navbar.css');
         
         $this->oAccounts = $this->model('Account');

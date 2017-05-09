@@ -20,8 +20,8 @@ class contMusicGenre extends contCommon
         $this->js('app.js');
 
         $this->css('/home/home.css');
+        $this->css('foundation.css');
         $this->css('navbar.css');
-        $this->css('foundation.min.css');
 
         $this->oModel = $this->model('Music');
 		

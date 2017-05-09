@@ -22,8 +22,8 @@ class contAccountFront extends contCommon
         $this->js('app.js');
 
         $this->css('/account/front.css');
+        $this->css('foundation.css');
         $this->css('navbar.css');
-        $this->css('foundation.min.css');
 
         $this->oModel = $this->model('Account');
 

@@ -6,5 +6,10 @@ $(document).ready(function(){
         }
         
     });    
+
+    $('#image-play').on('click', function(e){
+        e.preventDefault();
+        $('.mejs__playpause-button').click();
+    });
 });
 

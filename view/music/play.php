@@ -10,6 +10,23 @@
 
     <?=$css_import?>
     <?=$js_import?>
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="/resource/css/mediaelementplayer.min.css">
+    <script src="/resource/js/mediaelementplayer.js"></script>
+
+    <script>
+    $(document).ready(function() {
+        $('#audio-player').mediaelementplayer({
+            alwaysShowControls: true,
+            features: ['playpause','volume','progress'],
+            audioVolume: 'horizontal',
+            audioWidth: 400,
+            audioHeight: 120
+        });
+    });
+</script>
 </head>
 <body>
 
@@ -41,31 +58,43 @@
         
         <div class="play-container">
             <div class="info-container row">
-                <div class="thumbnail small-6 column">
-                    <img src="/resource/upload/<?=$data['m_cover']?>">
+                <div class="thumbnail small-12 column">
+                    <div class="details">
+                        <div class="title"><h3><?=$data['m_title']?></h3></div>
+                        <div class="singer"><p><?=$data['m_singers']?></p></div>
+                    </div>
+                    <a href="#" id="image-play"><img src="/resource/upload/<?=$data['m_cover']?>"></a>
+                    
                     <div class="music">
-                    <audio controls>
-                        <source src="/resource/upload/<?=$data['m_music_file']?>">
-                    </audio>
-                    </div>
-                </div>
-                <div class="details small-6 column">
-                    <div class="title">
-                        <span class="text">
-                            <?=$data['m_title']?>
-                        </span>
-                    </div>
-                    <div class="singer">
-                        <span class="text">
-                            <?=$data['m_singers']?>
-                        </span>
-                    </div>
-                    <div class="description">
-                        <span class="text">
-                            <?=$data['m_description']?>
-                        </span>
+                    <div class="hidden">
+                        <section>
+                        <h3>Global Options</h3>
+                        <form action="#" method="get">
+                            <label>Language <select name="lang">
+                                <option value="cs">Čeština / Czech (cs)</option>
+                            </select>
+                            </label>
+                            <label>Stretching (Video Only)<select name="stretching">
+                                <option value="auto" selected>Auto (default)</option>
+                            </select>
+                            </label>
+                        </form>
+                    </section>
                     </div>
                     
+                    <div class="players" id="player2-container">
+                        <div class="media-wrapper">
+                            <audio id="player2" autoplay loop preload="auto" controls style="max-width:100%;">
+                                <source src="/resource/upload/<?=$data['m_music_file']?>" type="audio/mp3">
+                            </audio>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="description">
+                    <span class="text">
+                        <?=$data['m_description']?>
+                    </span>
                 </div>
             </div>
 
@@ -137,5 +166,7 @@
             </div>
         </div>
     </div>
+
+    <script src="/resource/js/demo.js"></script>
 </body>
 </html>

@@ -21,8 +21,9 @@ class contMusicPlay extends contCommon
         $this->js('play.js');
 
 
-        $this->css('navbar.css');
+
         $this->css('foundation.min.css');
+        $this->css('navbar.css');
         $this->css('home/home.css');
         $this->css('music/play.css');
         

@@ -1,56 +1,16 @@
-.nav-top-bar {
+.top-bar {
     border-top: 2px solid #d02723;
     background-color: #324158;
     width: 100%;
-    height: 24px;
     padding: 0px 20% 0px 20%;
     margin: 0px;
 }
-.nav-top-bar .socials {
-    float:left;
+
+.top-bar ul {
+    background-color: #324158;
 }
 
-.nav-top-bar .accounts {
-    float:right;
-    display: inline-block;
-}
-
-.nav-top-bar a, .nav-top-bar span {
+.top-bar ul li a {
     color: white;
-    text-decoration: none;
-    font-size: 12px;
-    padding:0px;
-}
-
-.nav-top-bar a:hover {
-    color: #d02723;
-}
-
-.accounts input[type="text"], .accounts input[type="password"] {
-    width: 100%;
-    font-size: 0.8em;
-    padding: 0px;
-    height: auto;
-    margin: 0px;
-}
-
-.accounts input[type="submit"] {
-    font-size: 0.8em !important;
-    padding: 0px !important;
-
-    height: 100% !important;
-}
-
-.accounts .login-input {
-    padding: 0px;
-    padding-top: 3px;
-    padding-right: 10px;
-}
-
-.accounts .accounts-form {
-    padding: 0px;
-}
-
-.no-padding {
-    padding: 0px !important;
+    font-family: 'Raleway', sans-serif;
 }

@@ -57,7 +57,7 @@
                             <td class="no-padding"><?=$account['u_type']?></td>
                             <td class="no-padding">
                                 <a href="/account/front?id=<?=$account['u_id']?>" class="button success">Edit</a>
-                                <a href="#" class="button warning delete-button">Delete</a>
+                                <!-- <a href="#" class="button warning delete-button">Delete</a> -->
                             </td>
                             
                         </tr>
@@ -130,8 +130,8 @@
                             <td class="no-padding"><?=$music['m_singers']?></td>
                             <td class="no-padding"><?=date('F Y', strtotime($music['m_uploaded']))?></td>
                             <td class="no-padding">
-                                <a href="/music/crud/front?id=$music['m_id']" class="button success">Edit</a>
-                                <a href="#" class="button warning delete-button">Delete</a>
+                                <a href="/music/crud/front?id=<?=$music['m_id']?>" class="button success">Edit</a>
+                                <!-- <a href="#" class="button warning delete-button">Delete</a> -->
                             </td>
                             
                         </tr>

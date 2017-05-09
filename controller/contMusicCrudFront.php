@@ -16,7 +16,7 @@ class contMusicCrudFront extends contCommon
         $this->js('vendor/foundation.min.js');
         $this->js('app.js');
 
-        $this->css('foundation.min.css');
+        $this->css('foundation.css');
         $this->css('/music/crudFront.css');
         $this->css('navbar.css');
 

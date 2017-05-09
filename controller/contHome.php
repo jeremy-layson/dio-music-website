@@ -15,13 +15,15 @@ class contHome extends contCommon
 
     public function exec($aParams)
     {
-        $this->js('vendor/jquery.js');
+        $this->js('vendor/jquery-1.4.4.min.js');
         $this->js('vendor/foundation.min.js');
+        $this->js('vendor/equalizer.js');
+        
         $this->js('app.js');
 
         $this->css('home/home.css');
         
-        $this->css('foundation.min.css');
+        $this->css('foundation.css');
         $this->css('navbar.css');
         
         $this->oModel = $this->model('Music');

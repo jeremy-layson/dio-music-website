@@ -9,14 +9,14 @@
     <div class="main-body">
         <?php require_once('../view/template/navbar.php'); ?>
         <div class="content">
-            <div class="ads-container">
+            <!-- <div class="ads-container">
                 <div class="ads">
                     <span class="sign">
                         Advertisement
                     </span>
                     <a href="#"><img src="/resource/img/sample_ads.png"></a>
                 </div>
-            </div>
+            </div> -->
             <div class="content-nav">
                 <div class="logo">
                     <a href="/home"><img src="/resource/img/main_logo.png" /></a>
@@ -82,7 +82,7 @@
             <div class="genre-container">
                 <div class="genre small-12">
                     <div class="genre-title column">
-                        <?=$sGenre?>
+                        <a href="/music/genre?category=<?=$sGenre?>"><?=$sGenre?></a>
                         
                     </div>
                     <div class="genre-items small-12 row">
@@ -91,20 +91,17 @@
                         ?>
                         <div class="genre-item small-4 column">
                             <div class="item-photo">
-                                <img src="/resource/upload/<?=$aMusic['m_cover']?>">
-                            </div>
-                            <div class="item-info">
-                                <div class="item-head">
-                                   <span class="item-title"><?=$aMusic['m_title']?></span>
-                                    <span class="item-artist"><?=$aMusic['m_singers']?></span>                                 
-                                </div>
-                                <div class="item-description">
-                                    <span class="item-desc"><?=$aMusic['m_description']?></span>
-                                    <div class="item-button">
-                                        <a href="/music/play?id=<?=$aMusic['m_id']?>" class="button submit">Play</a>
+                                <a href="/music/play?id=<?=$aMusic['m_id']?>">
+                                    <img src="/resource/upload/<?=$aMusic['m_cover']?>">
+                                </a>
+                                <div class="item-info">
+                                    <div class="item-head">
+                                        <div class="item-title"><?=$aMusic['m_title']?></div>
+                                        <div class="item-artist"><?=$aMusic['m_singers']?></div>                                 
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                         <?php } ?>
                     </div>
