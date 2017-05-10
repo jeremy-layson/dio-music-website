@@ -6,6 +6,38 @@
     <?=$js_import?>
 </head>
 <body>
+
+<div class="top-12">
+    <div class="small-12">
+        <div class="genre-title column">
+            Weekly Top 12
+        </div>
+        <div class="genre-items small-12 row">
+            <hr/>
+
+            <?php
+                for ($i=0; $i < count($hot); $i++) {
+                    $item = $hot[$i];
+            ?>
+                <div class="genre-item small-12 column">
+                    <a href="/music/play?id=<?=$item['m_id']?>">
+                        <div class="top-item">
+                            <div class="top-title">
+                                <?=$item['m_title']?>
+                            </div>
+                            <div class="top-singer">
+                                <?=$item['m_singers']?>
+                            </div>    
+                        </div>
+                    </a>
+                </div>
+            <?php
+                }
+            ?>
+            
+        </div>
+    </div>
+</div>
     <div class="main-body">
         <?php require_once('../view/template/navbar.php'); ?>
         <div class="content">
@@ -42,39 +74,6 @@
             <?php
                 }
             ?>
-
-
-            <div class="genre-container">
-                <div class="genre small-12">
-                    <div class="genre-title column">
-                        Weekly Top 12
-                    </div>
-                    <div class="genre-items small-12 row">
-                        <hr/>
-
-                        <?php
-                            for ($i=0; $i < count($hot); $i++) {
-                                $item = $hot[$i];
-                        ?>
-                            <div class="genre-item small-6 column">
-                                <a href="/music/play?id=<?=$item['m_id']?>">
-                                    <div class="top-item">
-                                        <div class="top-title">
-                                            <?=$item['m_title']?>
-                                        </div>
-                                        <div class="top-singer">
-                                            <?=$item['m_singers']?>
-                                        </div>    
-                                    </div>
-                                </a>
-                            </div>
-                        <?php
-                            }
-                        ?>
-                        
-                    </div>
-                </div>
-            </div>
 
             <?php
                 foreach ($aData as $sGenre => $aContent) {
@@ -114,5 +113,15 @@
             <?php } ?>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var first = $('.genre-container').first();
+            $('.top-12').css(first.offset());
+            $('.top-12').css('right', '0px');
+            $('.top-12').css('left', '');
+             
+        });
+    </script>
 </body>
 </html>

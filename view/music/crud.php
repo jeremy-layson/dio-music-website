@@ -62,16 +62,18 @@
                                 <label for="mCover">Cover image:</label>
                             </div>
                             <div class="column small-9">
-                                <span style="font-size: 0.7em">Ideal Size: 300x300</span>
-                                <input type="file" name="mCover" id="mCover">
+                                <div style="font-size: 0.7em">Ideal Size: 600px x 600px</div>
+                                <label for="mCover" class="button">Select Cover</label>
+                                <input type="file" name="mCover" id="mCover" accept="image/*" class="show-for-sr">
                             </div>
                         </div>
                         <div class="form-field row">
                             <div class="column small-3">
                                 <label for="mAudio">Audio file:</label>
                             </div>
-                            <div class="column small-9">
-                                <input type="file" name="mAudio" id="mAudio">
+                            <div class="column small-9 custom-file-upload">
+                            <label for="mAudio" class="button">Select Music</label>
+                                <input class="show-for-sr"t type="file" name="mAudio" id="mAudio" accept="audio/*">
                             </div>
                         </div>
                         <div class="form-field row">

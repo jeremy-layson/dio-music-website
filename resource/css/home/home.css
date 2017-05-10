@@ -31,7 +31,7 @@
 
 .content-nav .logo {
     display: inline-block;
-    height: 3em;
+    height: 5em;
 }
 
 .content-nav .logo img {
@@ -179,4 +179,17 @@
 
 .top-item .top-singer {
     font-size: 0.8em;
+}
+
+.top-12 {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    width: 16%;
+    position: absolute;
+    margin: 15px 2% 0px 2%;
+    padding: 15px 0px 15px 0px;
+    border-radius: 5px;
+}
+
+.top-12 .genre-title {
+    font-size: 1.5em;
 }

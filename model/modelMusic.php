@@ -141,6 +141,29 @@ class modelMusic extends modelCommon
     }
 
     /**
+     * search music by parameter
+     *
+     * @return Array aList
+     */
+    public function searchMusic($sSearch)
+    {
+        $aList = [];
+        $prepared = mysqli_prepare($this->dbConn, "SELECT * FROM music WHERE m_title LIKE ? OR m_description LIKE ? OR m_genre LIKE ? AND m_approved = 1 AND m_deleted = 0  ORDER BY rand()");
+        $sSearch = '%' . $sSearch . '%';
+        $prepared->bind_param('sss', $sSearch, $sSearch, $sSearch);
+        $prepared->execute();
+        
+        $result = $prepared->get_result();
+        
+        while ($row = $result->fetch_array(MYSQLI_ASSOC))
+        {
+            $aList[] = $row;
+        }
+
+        return $aList;
+    }
+
+    /**
      * getter for single music
      *
      * @param String sId
