@@ -59,7 +59,11 @@
         <div class="play-container">
             <div class="info-container row">
                 <div class="thumbnail small-12 column">
+                    <div class="date-container">
+                        <div class="date"><p>May, 2017</p></div>
+                    </div>
                     <div class="details">
+                        
                         <div class="title"><h3><?=$data['m_title']?></h3></div>
                         <div class="singer"><p><?=$data['m_singers']?></p></div>
                     </div>

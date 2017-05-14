@@ -211,3 +211,21 @@ div.audio-player {
 .hidden {
     display: none;
 }
+
+.date {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.date {
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    float: right;
+    padding: 3px 5px;
+    text-align: right;
+}
+
+.date p {
+    margin: 0px;
+}

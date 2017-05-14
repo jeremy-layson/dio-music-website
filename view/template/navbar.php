@@ -51,6 +51,16 @@
     </div>
 </div>
 
+<style type="text/css">
+    #loginModal {
+        padding: 0px;
+    }
+    #loginModal #modalTitle {
+        padding: 3px 5px 3px 5px;
+        background-color: #324158;
+        color: white;
+    }
+</style>
 <div id="loginModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
     <h2 id="modalTitle">Login</h2>
     <form method="POST" action="/account/login">
@@ -70,7 +80,7 @@
         </div>
         <div class="row">
             <div class="large-12 columns">
-                <input type="submit" value="Login" class="button expand success">
+                <input type="submit" value="Login" class="button expand primary">
             </div>
         </div>
     </form>
@@ -78,7 +88,7 @@
 </div>
 
 <div id="searchModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <h2 id="modalTitle">Serch</h2>
+    <h2 id="modalTitle">Search</h2>
     <form method="GET" action="/music/search">
         <div class="row">
             <div class="large-12 columns">
